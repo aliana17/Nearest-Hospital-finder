@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        var HttpClient = function() {
+        this.get = function(aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() { 
+        if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+        aCallback(anHttpRequest.responseText);
+        }
+        anHttpRequest.open( "GET", aUrl, true ); 
+        anHttpRequest.send( null ); 
+        }
+        }
+        //var theurl='https://places.sit.ls.hereapi.com/places/v1/discover/search?at=lat,long&q=hospital&apikey=YDaaHtPpm5FLNkKKHhJOLKNVFLUWYtwApgHq_WO4uj4&callback=myCallbackFunction&Accept-Language=en';
+        //var client = new HttpClient();
+        //client.get(theurl, function(response) { 
+        //var response1 = JSON.parse(response);
+        Request.get('https://places.sit.ls.hereapi.com/places/v1/discover/search?at=lat,long&q=hospital&apikey=YDaaHtPpm5FLNkKKHhJOLKNVFLUWYtwApgHq_WO4uj4&callback=myCallbackFunction&Accept-Language=en', (err, res, body) => {
+          console.log(body);
+          document.getElementById("position1").innerHTML = body.results;
+          res.send(body);
+        });
+        //});
+        // alert(response);
+        //document.getElementById("position1").innerHTML = response1.results.items[0];
+        
+        //}); 
+        
+        </script>
+</head>
+<body>
+    <p>Hospital details</p>
+    <table border="1">
+        <tr><td>lattitude:</td><td id="position1"></td></tr>
+        <tr><td>longitude:</td><td id="position2"></td></tr>
+        
+       
+    </table>
+    <p>Nearest Hospital details</p>
+     <table border="1">
+     <tr><td>lattitude:</td><td id="position1"></td></tr>
+     <tr><td>longitude:</td><td id="position2"></td></tr>
+     <tr><td>Distance:</td><td id="position3"></td></tr>
+     <tr><td>Title:</td><td id="position4"></td></tr>
+
+     </table>
+
+</body>
+</html>
